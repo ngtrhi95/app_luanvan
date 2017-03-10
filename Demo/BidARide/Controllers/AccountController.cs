@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Globalization;
+using System.Configuration;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.SqlClient;
+using System.Data;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -147,25 +150,60 @@ namespace BidARide.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                //var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
+                //var result = await UserManager.CreateAsync(user, model.Password);
+                //if (result.Succeeded)
+                //{
+                string connStr = ConfigurationManager.ConnectionStrings["appConnection"].ConnectionString;
+                SqlConnection con = new SqlConnection(connStr);
+                SqlCommand cmd = new SqlCommand("uspRegisterPassenger", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("userID", model.Username.GetHashCode());
+                cmd.Parameters.AddWithValue("username", model.Username);
+                cmd.Parameters.AddWithValue("password", model.Password);
+                cmd.Parameters.AddWithValue("email", model.Email);
+                cmd.Parameters.AddWithValue("userFullname", model.Fullname);
+                cmd.Parameters.AddWithValue("phone", String.IsNullOrEmpty(model.Phone) ? (object)DBNull.Value : model.Phone);
+                cmd.Parameters.AddWithValue("createdDate", DateTime.UtcNow);
+                try
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
                     return RedirectToAction("Index", "Home");
+
                 }
-                AddErrors(result);
+                catch (SqlException e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e.Number);
+                    switch (e.Number)
+                    {
+                        case 2627:
+                            // Do something.
+                            ModelState.AddModelError("", "Sorry, this username has been taken.");
+                            break;
+                        case 2601:
+                            //Do something.
+                            ModelState.AddModelError("", "Sorry, this username has already been registered.");
+                            break;
+                        default:
+                            throw;
+                    }
+
+                }
+
+                //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                //For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                //Send an email with this link
+                // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                //}
             }
 
             // If we got this far, something failed, redisplay form
