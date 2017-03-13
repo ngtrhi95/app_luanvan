@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BidARide.Models;
+using Helpers;
 
 namespace BidARide.Controllers
 {
@@ -76,9 +77,9 @@ namespace BidARide.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //This doesn't count login failures towards account lockout
+            //To enable password failures to trigger account lockout, change to shouldLockout: true
+            var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -90,7 +91,7 @@ namespace BidARide.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                return View(model);
             }
         }
 
@@ -150,60 +151,19 @@ namespace BidARide.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                //var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
-                //var result = await UserManager.CreateAsync(user, model.Password);
-                //if (result.Succeeded)
-                //{
-                string connStr = ConfigurationManager.ConnectionStrings["appConnection"].ConnectionString;
-                SqlConnection con = new SqlConnection(connStr);
-                SqlCommand cmd = new SqlCommand("uspRegisterPassenger", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("userID", model.Username.GetHashCode());
-                cmd.Parameters.AddWithValue("username", model.Username);
-                cmd.Parameters.AddWithValue("password", model.Password);
-                cmd.Parameters.AddWithValue("email", model.Email);
-                cmd.Parameters.AddWithValue("userFullname", model.Fullname);
-                cmd.Parameters.AddWithValue("phone", String.IsNullOrEmpty(model.Phone) ? (object)DBNull.Value : model.Phone);
-                cmd.Parameters.AddWithValue("createdDate", DateTime.UtcNow);
-                try
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, PhoneNumber = model.Phone, UserFullName = model.Fullname};
+                var result = await UserManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
                 {
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Index", "Home");
-
                 }
-                catch (SqlException e)
-                {
-                    System.Diagnostics.Debug.WriteLine(e.Number);
-                    switch (e.Number)
-                    {
-                        case 2627:
-                            // Do something.
-                            ModelState.AddModelError("", "Sorry, this username has been taken.");
-                            break;
-                        case 2601:
-                            //Do something.
-                            ModelState.AddModelError("", "Sorry, this username has already been registered.");
-                            break;
-                        default:
-                            throw;
-                    }
-
-                }
-
-                //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                //For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                //Send an email with this link
-                // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                //}
+                AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form

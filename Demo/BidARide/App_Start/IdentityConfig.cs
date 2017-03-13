@@ -106,4 +106,11 @@ namespace BidARide
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
+
+    public class ApplicationUserStore : UserStore<ApplicationUser>
+    {
+        public ApplicationUserStore(ApplicationDbContext context) : base(context)
+        {
+        }
+    }
 }
