@@ -1,0 +1,49 @@
+﻿@model BidARide.ViewModels.RegisterViewModel
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    <div class="login">
+        <table cellpadding="2" cellspacing="2">
+            <tr>
+                <td style="font-size: large; color: red;">@ViewBag.Error</td>
+            </tr>
+            <tr>
+                <td>@Html.ValidationMessageFor(model => model.account.Username)</td>
+            </tr>
+            <tr>
+                <td>@Html.TextBoxFor(model => model.account.Username, new { placeholder = Html.DisplayNameFor(m => m.account.Username) })</td>
+            </tr>
+            <tr>
+                <td>@Html.ValidationMessageFor(model => model.account.Password)</td>
+            </tr>
+            <tr>
+                <td>@Html.PasswordFor(model => model.account.Password, new { placeholder = Html.DisplayNameFor(m => m.account.Password) })</td>
+            </tr>
+            <tr>
+                <td>@Html.ValidationMessageFor(model => model.account.ConfirmPassword)</td>
+            </tr>
+            <tr>
+                <td>@Html.PasswordFor(model => model.account.ConfirmPassword, new { placeholder = Html.DisplayNameFor(m => m.account.ConfirmPassword) })</td>
+            </tr>
+            <tr>
+                <td>@Html.ValidationMessageFor(model => model.account.Fullname)</td>
+            </tr>
+            <tr>
+                <td>@Html.TextBoxFor(model => model.account.Fullname, new { placeholder = Html.DisplayNameFor(m => m.account.Fullname) })</td>
+            </tr>
+            <tr>
+                <td>@Html.ValidationMessageFor(model => model.account.Email)</td>
+            </tr>
+            <tr>
+                <td>@Html.TextBoxFor(model => model.account.Email, new { placeholder = Html.DisplayNameFor(m => m.account.Email) })</td>
+            </tr>
+            <tr>
+                <td>@Html.TextBoxFor(model => model.account.Phone, new { placeholder = Html.DisplayNameFor(m => m.account.Phone) })</td>
+            </tr>
+            <tr>
+                <td><button type="submit" value="Register" id="register_btn">REGISTER</button></td>
+            </tr>
+</table>
+    </div>
+}
+
