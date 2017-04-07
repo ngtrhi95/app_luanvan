@@ -133,7 +133,7 @@ namespace BidARide.Controllers
                 }
                 Session["username"] = model.account.Username;
 
-                return View("Trip", "Index");
+                return View("Login");
             }
 
             // If we got this far, something failed, redisplay form
