@@ -52,3 +52,4 @@ D:\00.Study\Luan Van\App\app_luanvan\BidARide\BidARide\bin\Microsoft.Owin.Securi
 D:\00.Study\Luan Van\App\app_luanvan\BidARide\BidARide\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\00.Study\Luan Van\App\app_luanvan\BidARide\BidARide\obj\Debug\BidARide.dll
 D:\00.Study\Luan Van\App\app_luanvan\BidARide\BidARide\obj\Debug\BidARide.pdb
+D:\00.Study\Luan Van\App\app_luanvan\BidARide\BidARide\obj\Debug\BidARide.csprojResolveAssemblyReference.cache
