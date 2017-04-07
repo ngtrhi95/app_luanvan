@@ -8,7 +8,7 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-            var image = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
+            var image = 'https://www.robotwoods.com/dev/misc/bluecircle.png';
             var marker = new google.maps.Marker({
                 position: LatLng,
                 map: map,
