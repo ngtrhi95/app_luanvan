@@ -30,8 +30,8 @@ namespace BidARide.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            
 
+            Session.Remove("direction");
             Session.Remove("From");
             Session.Remove("To");
             return View();

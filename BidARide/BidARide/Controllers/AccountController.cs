@@ -22,7 +22,7 @@ namespace BidARide.Controllers
             if (account == null)
                 return View();
             Session["username"] = account.Username;
-            return View("Trip", "Index");
+            return RedirectToAction("Index", "Trip");
         }
 
         public ActionResult Logout()
