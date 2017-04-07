@@ -1,0 +1,109 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutHeader.cshtml";
+
+}
+@model BidARide.Models.Trip
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        input[type=text], select {
+            width: 250px;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 150px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+
+        .angular-google-map-container {
+            height: 300px;
+            box-shadow: 2px 2px 3px 3px lightgrey;
+        }
+
+        .angular-google-map {
+            width: 80%;
+            height: 100%;
+            margin: auto 0px;
+        }
+    </style>
+    @* AngularJS library *@
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.js"></script>
+    @* google map*@
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+    <script src="//rawgit.com/angular-ui/angular-google-maps/2.0.X/dist/angular-google-maps.js"></script>
+    <script src="~/Scripts/ngMap.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/gmaps.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIAO62sl7gODaykvAl9VjDig8DLeqvThA&callback=initMap">
+    </script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <style>
+            /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+            #map {
+                height: 500px;
+                width: 100%;
+            }
+    </style>
+
+    <script>
+        //$("input[type='text']").keyup(function (e) {
+        //    var s = document.getElementById("srclocation").value;
+        //    alert(s);
+        //});
+    </script>
+
+</head>
+<body>
+    <div style="position: absolute; margin-top: 30px; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
+        @using (Html.BeginForm("findDriver", "Trip", FormMethod.Post))
+        {
+            @Html.TextBoxFor(model => model.tripFrom, new { placeholder = Html.DisplayNameFor(m => m.tripFrom) })
+            @Html.TextBoxFor(model => model.tripTo, new { placeholder = Html.DisplayNameFor(m => m.tripTo) })
+            <input type="submit" value="ĐẶT XE" style="font-weight:bold;" ng-click="booking()">
+        }
+        @*<form name="frm" method="post">
+                <input type="text" id="srclocation" name="srclocation" placeholder="From..." required>
+                <input type="text" id="deslocation" name="deslocation" placeholder="To..." required>
+                <input type="submit" value="ĐẶT XE" style="font-weight:bold;" ng-click="booking()">
+            </form>*@
+    </div>
+
+    <div id="dvMap" style="width: 60%; height: 500px; margin-top:70px; float:left;">
+        <div class="maps" id="map">
+            <!-- Add directive code (gmap directive) for show map and markers-->
+
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

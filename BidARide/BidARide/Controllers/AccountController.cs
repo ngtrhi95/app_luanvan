@@ -1,5 +1,6 @@
 ﻿using BidARide.Models;
 using BidARide.ViewModels;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace BidARide.Controllers
 {
@@ -20,13 +22,13 @@ namespace BidARide.Controllers
             if (account == null)
                 return View();
             Session["username"] = account.Username;
-            return View("Welcome");
+            return View("Trip", "Index");
         }
 
         public ActionResult Logout()
         {
             Session.Remove("username");
-
+            Session.Remove("userID");
             if (Response.Cookies["username"] != null)
             {
                 HttpCookie ckUsername = new HttpCookie("username");
@@ -65,13 +67,22 @@ namespace BidARide.Controllers
             var responseString = await response.Content.ReadAsStringAsync();
 
             string s = responseString.ToString();
-            if (s != "{\"status\":200}")
+
+            JsonAccountInfo jsoninfo = new JsonAccountInfo(s);
+
+            if (jsoninfo.status != 200)
             {
                 ViewBag.Error = "Username or Password is incorrect.";
                 return View(model);
             }
+
+
+            //string userID = Session["username"].ToString();
+            dynamic d = JObject.Parse(s);
+            var payload = d.payload;
+
+            Session["userID"] = payload.userID;
             Session["username"] = model.account.Username;
-            
             if (model.remember)
             {
                 HttpCookie ckUsername = new HttpCookie("username");
@@ -85,7 +96,8 @@ namespace BidARide.Controllers
                 Response.Cookies.Add(ckPassword);
             }
 
-            return View("Welcome");
+            return RedirectToAction("Index", "Trip");
+            
         }
 
         public ActionResult Register()
@@ -121,7 +133,7 @@ namespace BidARide.Controllers
                 }
                 Session["username"] = model.account.Username;
 
-                return View("Welcome");
+                return View("Trip", "Index");
             }
 
             // If we got this far, something failed, redisplay form

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 
 namespace BidARide.Models
 {
@@ -51,5 +52,20 @@ namespace BidARide.Models
         [Phone]
         [Display(Name = "Phone")]
         public string Phone { get; set; }      
+    }
+
+    public class JsonAccountInfo
+    {
+        public int status { get; set; }
+        public Object payload { get; set; }
+
+        public JsonAccountInfo(string json)
+        {
+            var jsonObject = Json.Decode(json);
+            status = (int)jsonObject.status;
+            payload = (Object)jsonObject.payload;
+        }
+
+
     }
 }

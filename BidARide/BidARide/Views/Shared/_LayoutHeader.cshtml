@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Bid A Ride</title>
+    <link href="~/Content/demo.css" rel="stylesheet" />
+    <link href="~/Content/header-fixed.css" rel="stylesheet" />
+    <link href="~/Content/header-user-dropdown.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="header-user-dropdown header-fixed">
+        <div class="header-limiter">
+            <h1><a href="#">Bid <span>A Ride</span></a></h1>
+
+            <div class="header-user-menu">
+                @Session["username"]
+                <ul>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            var showHeaderAt = 150;
+
+            var win = $(window),
+                    body = $('body');
+
+            // Show the fixed header only on larger screen devices
+
+            if (win.width() > 600) {
+
+                // When we scroll more than 150px down, we set the
+                // "fixed" class on the body element.
+
+                win.on('scroll', function (e) {
+
+                    if (win.scrollTop() > showHeaderAt) {
+                        body.addClass('fixed');
+                    }
+                    else {
+                        body.removeClass('fixed');
+                    }
+                });
+
+            }
+
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutMap.cshtml";
+}
+
+<div ng-app="myApp" ng-controller="mapController">
+
+
+    <div class="locations" style="margin-top: 70px; float: right; margin-right:30px;">
+        @ViewBag.Error
+        <h3>Quãng đường <span style="color:blue;">{{distance}}</span>. Thành tiền: <span style="color:red;">{{price}}</span> VNĐ</h3>
+        <br />
+        <h2 style="color:red;">{{noti}}</h2>
+        <div class="container" style="width:100%;">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Driver Name</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="l in lstdrivers">
+                        <td>{{l.driverFullname}}</td>
+                        <td>{{l.driverPhone}}</td>
+                        <td><input type="button" value="Chọn" ng-click="booking(l)"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ul>
+            <li ng-repeat="l in lstdrivers">
+                {{l.driverID}}
+            </li>
+        </ul>
+    </div>
+</div>
