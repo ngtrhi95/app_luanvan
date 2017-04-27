@@ -1,165 +1,325 @@
 ﻿<!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>Bid A Ride</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #fff;
-            color: #fff;
-            font-family: Arial;
-            font-size: 12px;
-        }
 
-        .body {
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -40px;
-            bottom: -40px;
-            width: auto;
-            height: auto;
-            background-image: url(http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg);
-            background-size: cover;
-            -webkit-filter: blur(5px);
-            z-index: 0;
-        }
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
-        .grad {
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -40px;
-            bottom: -40px;
-            width: auto;
-            height: auto;
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
-            z-index: 1;
-            opacity: 0.7;
-        }
+    <!-- Fonts -->
+    <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <!-- Squad theme CSS -->
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/color/default.css" rel="stylesheet" />
 
-        .header {
-            position: absolute;
-            top: calc(50% - 35px);
-            left: calc(50% - 255px);
-            z-index: 2;
-        }
+    <!-- =======================================================
+        Theme Name: Squadfree
+        Theme URL: https://bootstrapmade.com/squadfree-free-bootstrap-template-creative/
+        Author: BootstrapMade
+        Author URL: https://bootstrapmade.com
+    ======================================================= -->
 
-            .header div {
-                float: left;
-                color: #fff;
-                font-family: 'Exo', sans-serif;
-                font-size: 35px;
-                font-weight: 200;
-            }
-
-                .header div span {
-                    color: #5379fa !important;
-                }
-
-        .login {
-            position: absolute;
-            top: calc(50% - 75px);
-            left: calc(50% - 50px);
-            height: 150px;
-            width: 350px;
-            padding: 10px;
-            z-index: 2;
-        }
-
-            .login input[type=text] {
-                width: 250px;
-                height: 30px;
-                background: transparent;
-                border: 1px solid rgba(255,255,255,0.6);
-                border-radius: 2px;
-                color: #fff;
-                font-family: 'Exo', sans-serif;
-                font-size: 16px;
-                font-weight: 400;
-                padding: 4px;
-            }
-
-            .login input[type=password] {
-                width: 250px;
-                height: 30px;
-                background: transparent;
-                border: 1px solid rgba(255,255,255,0.6);
-                border-radius: 2px;
-                color: #fff;
-                font-family: 'Exo', sans-serif;
-                font-size: 16px;
-                font-weight: 400;
-                padding: 4px;
-                margin-top: 10px;
-            }
-
-            .login button {
-                width: 260px;
-                height: 35px;
-                background: #fff;
-                border: 1px solid #fff;
-                cursor: pointer;
-                border-radius: 2px;
-                color: #a18d6c;
-                font-family: 'Exo', sans-serif;
-                font-size: 16px;
-                font-weight: 400;
-                padding: 6px;
-                margin-top: 10px;
-            }
-
-        #register_btn {
-            background: Indigo;
-            color: white;
-            border: 1px solid Indigo;
-        }
-
-                .login button:hover {
-                    opacity: 0.8;
-                }
-
-                .login button:active {
-                    opacity: 0.6;
-                }
-
-            .login input[type=text]:focus {
-                outline: none;
-                border: 1px solid rgba(255,255,255,0.9);
-            }
-
-            .login input[type=password]:focus {
-                outline: none;
-                border: 1px solid rgba(255,255,255,0.9);
-            }
-
-            .login input button :focus {
-                outline: none;
-            }
-
-        ::-webkit-input-placeholder {
-            color: rgba(255,255,255,0.6);
-        }
-
-        ::-moz-input-placeholder {
-            color: rgba(255,255,255,0.6);
-        }
-    </style>
-    <script src="~/Scripts/prefixfree.min.js"></script>
 </head>
-<body>
-    <div class="body"></div>
-    <div class="grad"></div>
-    <div class="header">
-        <div>Bid<span> A Ride</span></div>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="load"></div>
     </div>
-    <br>
-    @RenderBody()
-    <script src='https://codepen.io/assets/libs/fullpage/jquery.js'></script>
+
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="/#">
+                    <h1>BID A RIDE</h1>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#intro">Home</a></li>
+                    <li><a href="#contact">Account</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Section: intro -->
+    <section id="intro" class="intro">
+
+        <div class="slogan">
+            <h2>WELCOME TO <span class="text_color">BID A RIDE</span> </h2>
+            <h4>HỆ THỐNG ĐẶT XE TRỰC TUYẾN</h4>
+        </div>
+        <div class="page-scroll">
+            <a href="#contact" class="btn btn-circle">
+                <i class="fa fa-angle-double-down animated"></i>
+            </a>
+        </div>
+    </section>
+    <!-- /Section: intro -->
+    <!-- Section: contact -->
+    <section id="contact" class="home-section text-center">
+        <div class="heading-contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="wow bounceInDown" data-wow-delay="0.4s">
+                            <div class="section-heading">
+                                <h2 id="headerAcc">LOGIN</h2>
+                                    @*<h2 style="right: 0; position:absolute;">REGISTER</h2>*@
+                                <i class="fa fa-2x fa-angle-down"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-2 col-lg-offset-5">
+                    <hr class="marginbot-50">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div class="boxed-grey">
+
+                        <div id="sendmessage">Your message has been sent. Thank you!</div>
+                        <div id="errormessage"></div>
+                        @RenderBody();
+                        @*<form id="contact-form" action="" method="post" role="form" class="contactForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">
+                                    Name
+                                </label>
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">
+                                    Email Address
+                                </label>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">
+                                    Subject
+                                </label>
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                                <div class="validation"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">
+                                    Message
+                                </label>
+                                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                                <div class="validation"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-skin pull-right" id="btnContactUs">
+                                Send Message
+                            </button>
+                        </div>
+                    </div>
+                </form>*@
+                    </div>
+                </div>
+
+                @*<div class="col-lg-6">
+                    <div class="boxed-grey">
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                        {
+                            <div class="login">
+                                <table cellpadding="2" cellspacing="2">
+                                    <tr>
+                                        <td style="font-size: large; color: red;">@ViewBag.Error</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.ValidationMessageFor(model => model.account.Username)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.TextBoxFor(model => model.account.Username, new { placeholder = Html.DisplayNameFor(m => m.account.Username) })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.ValidationMessageFor(model => model.account.Password)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.PasswordFor(model => model.account.Password, new { placeholder = Html.DisplayNameFor(m => m.account.Password) })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.ValidationMessageFor(model => model.account.ConfirmPassword)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.PasswordFor(model => model.account.ConfirmPassword, new { placeholder = Html.DisplayNameFor(m => m.account.ConfirmPassword) })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.ValidationMessageFor(model => model.account.Fullname)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.TextBoxFor(model => model.account.Fullname, new { placeholder = Html.DisplayNameFor(m => m.account.Fullname) })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.ValidationMessageFor(model => model.account.Email)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.TextBoxFor(model => model.account.Email, new { placeholder = Html.DisplayNameFor(m => m.account.Email) })</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.TextBoxFor(model => model.account.Phone, new { placeholder = Html.DisplayNameFor(m => m.account.Phone) })</td>
+                                    </tr>
+                                    <tr>
+                                        <td><button type="submit" value="Register" id="register_btn">REGISTER</button></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>*@
+            </div>
+
+        </div>
+    </section>
+    <!-- /Section: contact -->
+    <!-- Section: about -->
+    <section id="about" class="home-section text-center">
+        <div class="heading-about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="wow bounceInDown" data-wow-delay="0.4s">
+                            <div class="section-heading">
+                                <h2>About us</h2>
+                                <i class="fa fa-2x fa-angle-down"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-2 col-lg-offset-5">
+                    <hr class="marginbot-50">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-md-offset-1">
+                    <div class="wow bounceInUp" data-wow-delay="0.2s">
+                        <div class="team boxed-grey">
+                            <div class="inner">
+                                <h5>BÙI TẤN LỘC</h5>
+                                <p class="subtitle">Giảng viên hướng dẫn</p>
+                                <div class="avatar"><img src="../Content/img/team/1.jpg" alt="" class="img-responsive img-circle" /></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-md-offset-1">
+                    <div class="wow bounceInUp" data-wow-delay="0.5s">
+                        <div class="team boxed-grey">
+                            <div class="inner">
+                                <h5>NGUYỄN TRỌNG HIỂN</h5>
+                                <p class="subtitle">1312203</p>
+                                <div class="avatar"><img src="../Content/img/team/2.jpg" alt="" class="img-responsive img-circle" /></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-md-offset-1">
+                    <div class="wow bounceInUp" data-wow-delay="0.8s">
+                        <div class="team boxed-grey">
+                            <div class="inner">
+                                <h5>NGUYỄN NGỌC HIỆP</h5>
+                                <p class="subtitle">1312207</p>
+                                <div class="avatar"><img src="../Content/img/team/3.jpg" alt="" class="img-responsive img-circle" /></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @*<div class="wow bounceInUp" data-wow-delay="1s">
+                        <div class="team boxed-grey">
+                            <div class="inner">
+                                <h5>Tom Petterson</h5>
+                                <p class="subtitle">Typographer</p>
+                                <div class="avatar"><img src="img/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
+
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Section: about -->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="wow shake" data-wow-delay="0.4s">
+                        <div class="page-scroll marginbot-30">
+                            <a href="#intro" id="totop" class="btn btn-circle">
+                                <i class="fa fa-angle-double-up animated"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <p>&copy;FIT-HCMUS. All rights reserved.</p>
+                    <div class="credits">
+                        <!--
+                            All the links in the footer should remain intact.
+                            You can delete the links only if you purchased the pro version.
+                            Licensing information: https://bootstrapmade.com/license/
+                            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Squadfree
+                        -->
+                        <a href="https://bootstrapmade.com/free-one-page-bootstrap-themes-website-templates/">One Page Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core JavaScript Files -->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.easing.min.js"></script>
+    <script src="~/Scripts/jquery.scrollTo.js"></script>
+    <script src="~/Scripts/wow.min.js"></script>
+
+
+    <!-- Custom Theme JavaScript -->
+    <script src="~/Scripts/custom.js"></script>
+    @*<script src="contactform/contactform.js"></script>*@
+
 </body>
+
 </html>
-
-

@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic|Montserrat:700|Merriweather:400italic');
 .header-fixed {
-	background-color:#292c2f;
+	background-color: rgb(103, 176, 209);
 	box-shadow:0 1px 1px #ccc;
 	padding: 20px 40px;
 	height: 80px;
@@ -86,7 +87,7 @@ body.fixed .header-fixed-placeholder {
 }
 
 body.fixed .header-fixed .header-limiter h1 {
-	font-size: 24px;
+	font-size: 20px;
 	line-height: 30px;
 }
 
@@ -138,4 +139,7 @@ body {
 	margin: 0;
 	padding: 0;
 	height: 1500px;
+    font-family: 'Lato',sans-serif;
+	font-weight: 300;
 }
+

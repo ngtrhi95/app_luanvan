@@ -6,9 +6,10 @@
 <div ng-app="myApp" ng-controller="mapController">
 
 
-    <div class="locations" style="margin-top: 70px; float: right; margin-right:30px;">
+    <div class="locations">
         @ViewBag.Error
-        <h3>Quãng đường <span style="color:blue;">{{distance}}</span>. Thành tiền: <span style="color:red;">{{price}}</span> VNĐ</h3>
+        <h3>Quãng đường: <span style="color:blue;">{{distance}}</span>. </h3> 
+        <h3>Thành tiền: <span style="color:red;">{{price}}</span> VNĐ</h3>
         <br />
         <h2 style="color:red;">{{noti}}</h2>
         <div class="container" style="width:100%;">

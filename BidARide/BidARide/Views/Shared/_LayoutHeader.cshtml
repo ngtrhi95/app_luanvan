@@ -4,17 +4,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Bid A Ride</title>
-    <link href="~/Content/demo.css" rel="stylesheet" />
     <link href="~/Content/header-fixed.css" rel="stylesheet" />
     <link href="~/Content/header-user-dropdown.css" rel="stylesheet" />
 </head>
 <body>
     <header class="header-user-dropdown header-fixed">
         <div class="header-limiter">
-            <h1><a href="#">Bid <span>A Ride</span></a></h1>
+            <a href="/#" >
+                <h1>BID A RIDE</h1>
+            </a>
 
             <div class="header-user-menu">
-                @Session["username"]
+                <h5>@Session["username"]</h5>
                 <ul>
                     <li><a href="#">Profile</a></li>
                     <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>

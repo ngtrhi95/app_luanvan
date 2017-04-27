@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic|Montserrat:700|Merriweather:400italic');
+
 .header-user-dropdown {
-	background-color:#292c2f;
+	background-color: rgb(103, 176, 209);
 	box-shadow:0 1px 1px #ccc;
 	padding: 20px 40px;
 	height: 80px;
@@ -17,7 +19,9 @@
 
 .header-user-dropdown .header-limiter h1{
 	float: left;
-	font: normal 28px Cookie, Arial, Helvetica, sans-serif;
+    font-weight:700;
+    font-size: 20px;
+	font-family: Montserrat, sans-serif;
 	line-height: 40px;
 	margin:0;
 }
@@ -34,7 +38,7 @@
 }
 
 .header-user-dropdown .header-limiter nav{
-	font:16px Arial, Helvetica, sans-serif;
+	font:18px  Lato, sans-serif;
 	line-height: 40px;
 	float: left;
 	margin: 0 0 0 60px;
@@ -62,7 +66,7 @@
 	top: -12px;
 	border-radius: 2px;
 	background-color: #2A6A92;
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-shadow: 0 1px 1px 0 rgba(103, 176, 209, 0.12);
 	height: 13px;
 	font-size: 11px;
 	right: -15px;
@@ -74,7 +78,7 @@
 .header-user-dropdown .header-limiter .header-user-menu{
 	position: relative;
 	float:right;
-	background-color:#3a3c3e;
+	background-color: rgb(103, 176, 209);
 	width:75px;
 	height:40px;
 	border-radius:2px;
@@ -85,7 +89,8 @@
 	width:0;
 	height:0;
 	top: 18px;
-	left: 15px;
+	/*left: 15px;*/
+    right:0;
 	position:absolute;
 	border:5px solid transparent;
 	border-top-color:#fff;
@@ -93,7 +98,7 @@
 
 .header-user-dropdown .header-limiter .header-user-menu ul{
 	display: none;
-	font:bold 13px Arial, Helvetica, sans-serif;
+	font:bold 13px Lato, sans-serif;
 	background-color: inherit;
 	list-style: none;
 	position: absolute;
@@ -137,7 +142,7 @@
 @media all and (max-width: 800px) {
 
 	.header-user-dropdown .header-limiter h1 {
-		font-size: 24px;
+		font-size: 20px;
 	}
 
 	.header-user-dropdown .header-limiter nav a {

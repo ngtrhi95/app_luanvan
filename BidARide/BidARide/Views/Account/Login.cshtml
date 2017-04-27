@@ -1,6 +1,10 @@
-﻿@model BidARide.ViewModels.LoginViewModel
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+@model BidARide.ViewModels.LoginViewModel
+
+@*@using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
     <div class="login">
         <table cellpadding="2" cellspacing="2">
@@ -30,4 +34,54 @@
             </tr>
         </table>
     </div>
+}*@
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <div class="login" id="contact-form">
+        <div class="row">
+            <div>
+                <table cellpadding="2" cellspacing="2" class="col-md-12">
+                    <tr>
+                        <td style="font-size: large; color: red; ">@ViewBag.Error</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(model => model.account.Username, new { Class = "labelfor" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.ValidationMessageFor(model => model.account.Username)</td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.TextBoxFor(model => model.account.Username, new { placeholder = Html.DisplayNameFor(m => m.account.Username), Class = "textboxfor" })</td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.LabelFor(model => model.account.Password, new { Class = "labelfor", Style = "margin-top: 15px;" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.ValidationMessageFor(model => model.account.Password)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.PasswordFor(model => model.account.Password, new { placeholder = Html.DisplayNameFor(m => m.account.Password), Class = "textboxfor" })</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: medium; margin-top: 15px; " class="labelfor">@Html.CheckBoxFor(model => model.remember) @Html.LabelFor(model => model.remember)</td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" value="Login" class="btn btn-info" style="width: 250px; margin-top: 5px;">LOGIN</button></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" value="Register" id="register_btn" style="width: 250px; margin-top: 5px;" class="btn" onclick="registerform()">REGISTER</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 }
+
+<script>
+    function registerform() {
+        location.href = '@Url.Action("Register", "Account")';
+    }
+</script>

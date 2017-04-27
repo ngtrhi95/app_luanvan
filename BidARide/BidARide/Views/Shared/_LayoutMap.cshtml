@@ -65,8 +65,8 @@
             /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
             #map {
-                height: 500px;
-                width: 100%;
+                height: 700px;
+                /*width: 100%;*/
             }
     </style>
 
@@ -79,26 +79,32 @@
 
 </head>
 <body>
-    <div style="position: absolute; margin-top: 30px; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
-        @using (Html.BeginForm("findDriver", "Trip", FormMethod.Post))
-        {
-            @Html.TextBoxFor(model => model.tripFrom, new { placeholder = Html.DisplayNameFor(m => m.tripFrom) })
-            @Html.TextBoxFor(model => model.tripTo, new { placeholder = Html.DisplayNameFor(m => m.tripTo) })
-            <input type="submit" value="TÌM TÀI XẾ" style="font-weight:bold;" ng-click="booking()">
-        }
-        @*<form name="frm" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                @using (Html.BeginForm("findDriver", "Trip", FormMethod.Post))
+                {
+                    @Html.TextBoxFor(model => model.tripFrom, new { placeholder = Html.DisplayNameFor(m => m.tripFrom) })
+                    @Html.TextBoxFor(model => model.tripTo, new { placeholder = Html.DisplayNameFor(m => m.tripTo) })
+                    <input type="submit" value="TÌM TÀI XẾ" style="font-weight:bold;" ng-click="booking()">
+                }
+                @*<form name="frm" method="post">
                 <input type="text" id="srclocation" name="srclocation" placeholder="From..." required>
                 <input type="text" id="deslocation" name="deslocation" placeholder="To..." required>
                 <input type="submit" value="ĐẶT XE" style="font-weight:bold;" ng-click="booking()">
             </form>*@
-    </div>
-
-    <div id="dvMap" style="width: 60%; height: 500px; margin-top:70px; float:left;">
-        <div class="maps" id="map">
+            </div>
         </div>
-    </div>
-    <div>
-        @RenderBody()
+        
+        <div class="row">
+            <div id="dvMap" class="col-md-8">
+                <div class="maps" id="map">
+                </div>
+            </div>
+            <div class="col-md-4">
+                @RenderBody()
+            </div>
+        </div>
     </div>
 
     <script async defer
